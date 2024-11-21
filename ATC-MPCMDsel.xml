@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+	<name>ATC-MPCMDsel</name>
+	<modal>false</modal>
+	<pref-width>250</pref-width>
+	<x>-2</x><y>-2</y>
+<!--	<color><red>0</red><green>0</green><blue>0</blue><alpha>0.6</alpha></color>	-->
+	<layout>vbox</layout>
+	<group>
+		<layout>hbox</layout>
+			<text><label>Command for:</label></text>
+			<text><property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-target</property></text>
+			<stretch><empty></empty></stretch>
+			<button><pref-height>16</pref-height><pref-width>16</pref-width><legend>X</legend>
+				<binding><command>nasal</command><script>setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/MP-Status",getprop("/sim/gui/dialogs/ATC-ML/ATC-MP/MP-Status-temp"))</script></binding>
+				<binding><command>dialog-close</command><dialog-name>ATC-MPCMDsel</dialog-name></binding>
+			</button>
+	</group>
+	<list>
+		<name>cmdlist</name>
+		<pref-height>660</pref-height><pref-width>246</pref-width>
+<!--		<color><red>0</red><green>0</green><blue>0</blue><alpha>0.2</alpha></color>	-->
+		<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-short</property>
+		<binding><command>dialog-apply</command><object-name>cmdlist</object-name></binding>
+		<binding><command>nasal</command><script>globals.ATC.search_command1()</script></binding>
+		<binding><command>dialog-close</command><dialog-name>ATC-MPCMDsel</dialog-name></binding>
+	</list>
+</PropertyList>

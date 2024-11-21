@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<PropertyList>
+	<name>ATC-MPlanguage</name>
+	<modal>false</modal>
+	<x>-50</x><y>30</y>
+
+	<layout>vbox</layout>
+	<text><label>Define additional Languages:</label></text>
+	<draggable>true</draggable>
+	<hrule/>
+
+	<combo>
+		<x>10</x><y>50</y>
+		<pref-width>200</pref-width><height>25</height>
+		<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-languages/l2</property>
+		<value>de</value>
+		<value>fr</value>
+	</combo>
+
+	<combo>
+		<x>10</x><y>50</y>
+		<pref-width>200</pref-width><height>25</height>
+		<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-languages/l3</property>
+		<value>de</value>
+		<value>fr</value>
+	</combo>
+		
+	<hrule/>
+	<group>
+		<layout>hbox</layout>
+    <button><legend>OK</legend><default>true</default><key>Enter</key>
+      <binding><command>dialog-apply</command></binding>
+      <binding><command>nasal</command><script>globals.ATC.getLanguage()</script></binding>
+      <binding><command>dialog-close</command></binding>
+    </button><button><legend>ESC</legend>
+      <binding><command>dialog-close</command></binding></button>
+  </group>
+</PropertyList>

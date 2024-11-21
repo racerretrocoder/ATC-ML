@@ -1,0 +1,307 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+	<name>ATC-MPinRW</name>
+	<modal>false</modal>
+	<x>1</x><y>1</y>
+
+	<layout>vbox</layout><halign>center</halign>
+		<text><label>Preconfigure/Change RADAR Settings   </label></text>
+		<text><color><red>1</red><green>0.5</green><blue>0</blue><alpha>1</alpha></color>
+				<label>(See "README.pdf" in package for details !)</label></text>
+	<hrule/>
+
+	<group><layout>hbox</layout><default-padding>8</default-padding>
+		<group><layout>vbox</layout><name>column left</name>				<!-- column left -->
+	
+			<group><layout>table</layout><halign>left</halign>
+				<input><row>0</row><col>0</col>
+					<property>/sim/tower/TWR-RWin-ICAO</property>
+					<binding><command>dialog-apply</command></binding>
+					<binding><command>nasal</command>
+							<script>
+								if (cmp (getprop("/sim/tower/airport-id"),getprop("/sim/tower/TWR-RWin-ICAO")) != 0) {
+									globals.ATC.update_ICAO(getprop("/sim/tower/TWR-RWin-ICAO"));
+								}
+						</script></binding>
+					<binding><command>dialog-update</command></binding>
+				</input>
+
+				<text><row>0</row><col>1</col>
+				<halign>left</halign><label>ICAO  +Job:</label></text>
+				<combo><row>0</row><col>2</col><name>combo1</name>
+					<pref-width>100</pref-width><height>25</height>
+					<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-job</property>
+					<value>OBS</value>
+					<value>GND</value>
+					<value>TWR</value>
+					<value>DEP</value>
+					<value>APR</value>
+					<value>ATC</value>
+					<binding><command>dialog-apply</command></binding>
+					<binding><command>nasal</command><script>globals.ATC.update_UID()</script></binding>
+				</combo>
+				<text><row>0</row><col>3</col>
+					<halign>left</halign><label>   ====> </label></text>
+
+				<group><row>0</row><col>4</col><layout>hbox</layout>
+						<vrule/>
+						<text><label> </label></text>
+					<group><layout>hbox</layout>
+						<group><layout>vbox</layout>
+<!--TBD				      <radio><name>Radio-1</name>
+								<live>true</live>
+				      	<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sa</property>
+      					<binding><command>dialog-apply</command></binding>
+								<binding><command>nasal</command>
+									<script>
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sa","true");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sb","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sc","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sd","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID",getprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_a"));
+										globals.ATC.update_UID()
+									</script></binding>
+				      </radio>
+				      <radio><name>Radio-2</name>
+								<live>true</live>
+				      	<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sb</property>
+      					<binding><command>dialog-apply</command></binding>
+								<binding><command>nasal</command>
+									<script>
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sa","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sb","true");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sc","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sd","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID",getprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_b"));
+										globals.ATC.update_UID()
+									</script></binding>
+				      </radio>	-->
+				      <radio><name>Radio-3</name>
+								<live>true</live>
+				      	<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sc</property>
+      					<binding><command>dialog-apply</command></binding>
+								<binding><command>nasal</command>
+									<script>
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sa","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sb","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sc","true");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sd","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID",getprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_c"));
+										globals.ATC.update_UID()
+									</script></binding>
+				      </radio>
+				      <radio><name>Radio-4</name>
+								<live>true</live>
+				      	<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sd</property>
+      					<binding><command>dialog-apply</command></binding>
+								<binding><command>nasal</command>
+									<script>
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sa","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sb","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sc","false");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_sd","true");
+										setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID",getprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_d"));
+										globals.ATC.update_UID()
+									</script></binding>
+				      </radio>
+						</group>
+						<group><layout>vbox</layout>
+<!--TBD							<text><name>R-Text-1</name><halign>left</halign>
+								<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_a</property>
+							</text>
+							<text><name>R-Text-2</name><halign>left</halign>
+								<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_b</property>
+							</text>	-->
+							<text><name>R-Text-3</name><halign>left</halign>
+								<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_c</property>
+							</text>
+							<text><name>R-Text-4</name><halign>left</halign>
+								<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-UID_d</property>
+							</text>
+						</group>
+					</group>
+				</group>
+			</group>
+
+			<group><layout>hbox</layout><halign>left</halign><valign>center</valign>
+
+				<group><layout>hbox</layout><halign>left</halign><valign>center</valign>
+					<input><property>/sim/tower/TWR-RWin-ALT</property>
+						<binding><command>dialog-apply</command></binding>
+						<binding><command>nasal</command><script>
+							setprop("/sim/tower/altitude-ft",num(getprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-APalt")) + num(getprop("/sim/tower/TWR-RWin-ALT")));
+							</script></binding>
+						<binding><command>dialog-update</command></binding>
+					</input>
+					<text><halign>left</halign><label>ft = YOU are above GND     </label></text>
+				</group>
+
+				<group><layout>vbox</layout><halign>left</halign><valign>center</valign>
+					<group><layout>hbox</layout><halign>left</halign><valign>center</valign>
+						<text><format>%.f ft</format><property>/sim/tower/altitude-ft</property></text>
+						<text><label>      = Tower Altitude in FGFS</label></text>
+					</group>
+					<group><layout>hbox</layout>
+						<text><format>%.f ft</format><property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-APalt</property></text>
+						<text><halign>left</halign><label>      = Airfield Elevation in FGFS</label></text>
+					</group>
+				</group>
+			</group>
+			<hrule/>
+
+			<group><layout>table</layout><halign>center</halign>				<!-- Fonts + localizer -->
+
+				<button><row>0</row><col>1</col><halign>left</halign>
+					<legend>Select Font</legend>
+					<default>true</default><equal>true</equal>
+          <binding><command>nasal</command><script>globals.ATC.select_atc_font();</script></binding>
+					<binding><command>dialog-apply</command></binding>
+					<binding><command>dialog-update</command></binding>
+				</button>
+				<text><halign>right</halign><row>0</row><col>0</col>
+					<label>Change Font for Radar:</label></text>
+
+				<button><row>0</row><col>2</col><halign>left</halign>
+					<color><red>0.0</red><green>0.3</green><blue>0.0</blue></color>
+					<legend>Save Font</legend>
+					<default>true</default><equal>true</equal>
+          <binding><command>nasal</command><script>globals.ATC.saveFontSettings();</script></binding>
+				</button>
+				<text>
+					<halign>left</halign><row>0</row><col>3</col><label>dummy</label>
+					<format>%s</format>
+					<property>/instrumentation/radar/font/name</property></text>
+
+				<input><row>1</row><col>1</col>
+						<property>/instrumentation/radar/font/size</property>
+						<binding><command>dialog-apply</command></binding>
+						<binding><command>dialog-update</command></binding></input>
+				<text><halign>right</halign><row>1</row><col>0</col>
+						<label>Font-Size</label></text>
+
+				<input><row>1</row><col>2</col>
+						<property>/instrumentation/radar/font/line-spacing</property>
+						<binding><command>dialog-apply</command></binding>
+						<binding><command>dialog-update</command></binding></input>
+				<text><halign>left</halign><row>1</row><col>3</col>
+						<label>Line-Spacing</label></text>
+
+				<text><halign>left</halign><row>2</row><col>0</col>
+					<label>  </label></text>
+
+				<input><row>3</row><col>1</col><halign>center</halign>
+						<property>/sim/atc/localizer-heading-deg</property>
+						<binding><command>dialog-apply</command></binding>
+						<binding><command>dialog-update</command></binding></input>
+				<text><halign>right</halign><row>3</row><col>0</col>
+					<label>3 digit Runway-Heading</label></text>
+
+				<input><row>3</row><col>2</col>
+						<property>/sim/atc/localizer-offset</property>
+						<binding><command>dialog-apply</command></binding>
+						<binding><command>nasal</command>
+								<script>setprop("/sim/atc/localizer-offset-display",getprop("sim/atc/localizer-offset"));
+								</script></binding>
+						<binding><command>dialog-update</command></binding></input>
+				<text><halign>left</halign><row>3</row><col>3</col>
+					<label>Localizer offset</label></text>
+			</group>
+
+			<group><layout>vbox</layout><halign>center</halign>
+				<text><label>Enter runway announcement: (First 3 digits must define a runway!)</label></text>
+				<input><pref-width>400</pref-width><halign>center</halign>
+					<property>/sim/atc/activeRW</property>
+					<binding><command>dialog-apply</command></binding>
+					<binding><command>dialog-update</command></binding></input>
+				<text><halign>center</halign>
+					<label>e.g.:    "08"   or   "25R ILS 109.5 + 18"    etc.</label></text>
+			</group>
+			<hrule/>
+			<group><layout>hbox</layout><halign>center</halign>
+				<input><halign>center</halign>
+						<property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
+						<binding><command>dialog-apply</command></binding>
+						<binding><command>dialog-update</command></binding></input>
+				<text><halign>left</halign>
+						<label>COM-1      COM-2 </label></text>
+				<input><halign>center</halign>
+						<property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
+						<binding><command>dialog-apply</command></binding>
+						<binding><command>dialog-update</command></binding>				</input>
+			</group>
+		</group>
+		<vrule/>
+
+		<group><layout>vbox</layout>				<!-- Heading right -->
+			<halign>center</halign>
+			<text><label>Select from available ICAO's</label></text>	
+			<hrule/>
+			<text><property>/sim/gui/dialogs/ATC-ML/ATC-MPinRW/ICAOsel</property></text>
+			<list>
+				<name>ICAO-List</name>
+				<pref-height>350</pref-height><pref-width>200</pref-width>
+				<property>/sim/gui/dialogs/ATC-ML/ATC-MPinRW/setRadarSettings</property>
+				<binding><command>dialog-apply</command></binding>
+				<binding><command>nasal</command><script>globals.ATC.loadRadarSettings()</script></binding>
+				<binding><command>dialog-update</command></binding>
+<!--				<binding><command>dialog-close</command></binding>	-->
+			</list>
+
+			<button>
+				<legend>REFRESH Listing</legend>
+<!--				<color><red>0</red><green>1</green><blue>0.2</blue><alpha>1</alpha></color>	-->
+				<default>true</default>
+				<equal>true</equal>
+				<binding><command>nasal</command><script>globals.ATC.getRadarSettings()</script></binding>
+			<binding><command>dialog-update</command></binding>
+			</button>
+		</group>
+	</group>
+	<hrule/>
+
+	<group><layout>hbox</layout>					<!-- bottom of PopUp -->
+		<stretch>true</stretch>
+		<button>
+			<legend>OK</legend>
+			<color><red>0.0</red><green>0.0</green><blue>0.3</blue></color>
+			<default>true</default>
+			<equal>true</equal>
+			<binding><command>dialog-apply</command></binding>
+			<binding><command>dialog-update</command></binding>
+			<binding><command>dialog-close</command></binding>
+		</button>
+
+<!--		<button>
+			<legend>Exit / ESC</legend>
+			<color><red>0.5</red><green>0.5</green><blue>0.0</blue></color>
+			<default>true</default>
+			<equal>true</equal>
+			<binding><command>dialog-close</command><dialog-name>ATC-MPinRW</dialog-name></binding>
+		</button>	-->
+
+		<button>
+			<legend>SAVE to File</legend>
+			<color><red>0.0</red><green>0.3</green><blue>0.0</blue></color>
+			<default>true</default>
+			<equal>true</equal>
+			<binding><command>dialog-apply</command></binding>
+			<binding><command>dialog-update</command></binding>
+			<binding><command>nasal</command><script>setprop("/sim/gui/dialogs/ATC-ML/ATC-MPinRW/DELETE","no");</script></binding>
+			<binding><command>nasal</command><script>globals.ATC.defineDataToSave()</script></binding>
+<!--			<binding><command>dialog-close</command></binding>	-->
+		</button>
+
+		<button>
+			<legend>DELETE from File</legend>
+			<color><red>0.4</red><green>0.0</green><blue>0.0</blue></color>
+			<default>true</default>
+			<equal>true</equal>
+			<binding><command>nasal</command><script>setprop("/sim/gui/dialogs/ATC-ML/ATC-MPinRW/DELETE","yes");</script></binding>
+			<binding><command>dialog-apply</command></binding>
+			<binding><command>nasal</command><script>globals.ATC.defineDataToSave()</script></binding>
+<!--			<binding><command>dialog-close</command></binding>	-->
+		</button>
+	</group>
+
+</PropertyList>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+	<name>ATC-MP</name>
+	<modal>false</modal>
+	<pref-width>430</pref-width>
+	<x>-1</x><y>-1</y>
+	<color><red>0</red><green>0</green><blue>0</blue><alpha>0.3</alpha></color>
+	<layout>vbox</layout>
+
+	<text>
+		<color><red>0</red><green>1</green><blue>1</blue><alpha>1</alpha></color>
+		<halign>left</halign>
+		<label>callsign   nm    alt  kts  hdg  model</label></text>
+	<list>
+		<name>mplist</name>
+		<halign>fill</halign><valign>fill</valign><stretch>true</stretch>
+		<pref-height>600</pref-height><pref-width>420</pref-width>
+		<color><red>0</red><green>0</green><blue>0</blue><alpha>0.2</alpha></color>
+		<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-target</property>
+		<binding><command>dialog-apply</command><object-name>mplist</object-name></binding>
+		<binding><command>nasal</command><script>globals.ATC.search_command()</script></binding>
+    <binding><command>dialog-close</command></binding>
+	</list>
+</PropertyList>

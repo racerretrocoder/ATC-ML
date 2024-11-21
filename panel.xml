@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+<PropertyList>
+  <name>Panel Background</name>
+  <background>Aircraft/ATC-ML/transparent.rgb</background>
+  <w-base>1024</w-base>
+  <h-base>768</h-base>
+  <y-offset>0</y-offset>
+  <view-width>1024</view-width>
+  <view-height>768</view-height>
+  <autohide>0</autohide>
+
+  <instruments>
+    <instrument include="atc-instr.xml">
+      <name>ATC</name>
+      <x>512</x>
+      <y>384</y>
+      <w>1024</w>
+      <h>768</h>
+    </instrument>
+
+    <instrument include="radar-screen.xml">
+      <name>screen</name>
+      <x>304</x>
+      <y>304</y>
+      <w>1200</w>
+      <h>1200</h>
+    </instrument>
+
+    <instrument include="ATC-MP.xml">
+      <name>ATC-MP</name>
+			<binding><command>nasal</command><script>globals.ATC.startMP();</script></binding>
+    </instrument>
+
+  </instruments>
+</PropertyList>

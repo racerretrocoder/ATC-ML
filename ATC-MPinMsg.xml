@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <name>ATC-MPinMsg</name>
+  <modal>false</modal>
+  <layout>vbox</layout>
+	<y>-50</y>
+  <resizable>true</resizable>
+	<padding>4</padding>
+	<pref-width>1000</pref-width>
+
+	<text>
+		<halign>left</halign>
+		<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-compose</property>
+	</text>
+
+  <input>
+    <name>compose</name>
+    <stretch>true</stretch>
+    <halign>fill</halign>
+    <stretch>true</stretch>
+<!--		<color><red>0.05</red><green>0.08</green><blue>0.03</blue><alpha>0.5</alpha></color>	-->
+		<property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-add</property>
+<!--		<binding><command>nasal</command><script>GNU Readline()</script></binding>	-->
+  </input>
+
+  <group>
+		<layout>hbox</layout>
+    <button>
+      <legend>Send</legend>
+      <default>true</default>
+      <key>Enter</key>
+      <binding>
+        <command>dialog-apply</command><object-name>compose</object-name></binding>
+			<binding><command>nasal</command><script>setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/MP-Status",getprop("/sim/gui/dialogs/ATC-ML/ATC-MP/MP-Status-temp"))</script></binding>
+      <binding><command>nasal</command><script>globals.ATC.CMD_send_seq();</script></binding>
+      <binding><command>dialog-close</command></binding>
+    </button><button>
+      <legend>ESC</legend>
+			<binding><command>nasal</command><script>setprop("/sim/gui/dialogs/ATC-ML/ATC-MP/MP-Status",getprop("/sim/gui/dialogs/ATC-ML/ATC-MP/MP-Status-temp"))</script></binding>
+      <binding><command>dialog-close</command></binding>
+		</button>
+  </group>
+</PropertyList>

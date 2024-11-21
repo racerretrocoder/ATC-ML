@@ -1,0 +1,947 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <name>ATC</name>
+  <w-base>1024</w-base>
+  <h-base>768</h-base>
+  <layers>
+    <layer>
+      <name>atc panel</name>
+      <texture>
+        <path>Aircraft/ATC-ML/panel-bg.rgb</path>
+        <x1>0</x1>
+        <y1>0</y1>
+        <x2>1</x2>
+        <y2>0.748</y2>
+      </texture>
+      <w>1024</w>
+      <h>768</h>
+    </layer>
+
+    <layer>
+      <name>MP callsign</name>
+      <type>text</type>
+      <condition>
+        <greater-than>
+          <property>/sim/atc/target-number</property>
+          <value>-1</value>
+        </greater-than>
+      </condition>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.8</red>
+        <green>0.8</green>
+        <blue>0.8</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>text-value</type>
+          <property>/sim/atc/target-id</property>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>206</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-180</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>Tracking Indicator</name>
+      <type>text</type>
+      <condition>
+        <property>/sim/atc/tracking</property>
+      </condition>
+      <font>default</font>
+      <point-size>36</point-size>
+        <color>
+          <red>1</red>
+          <green>0.3</green>
+          <blue>0.3</blue>
+        </color>
+        <chunks>
+          <chunk>
+            <type>literal</type>
+            <text>.</text>
+          </chunk>
+        </chunks>
+        <transformations>
+          <transformation>
+            <type>x-shift</type>
+            <offset>103</offset>
+          </transformation>
+          <transformation>
+            <type>y-shift</type>
+            <offset>-211</offset>
+          </transformation>
+        </transformations>
+      </layer>
+
+    <layer>
+      <name>Loc Indicator</name>
+      <type>text</type>
+      <condition>
+        <property>/sim/atc/localizer-display</property>
+      </condition>
+      <font>default</font>
+      <point-size>36</point-size>
+        <color>
+          <red>1</red>
+          <green>0.3</green>
+          <blue>0.3</blue>
+        </color>
+        <chunks>
+          <chunk>
+            <type>literal</type>
+            <text>.</text>
+          </chunk>
+        </chunks>
+        <transformations>
+          <transformation>
+            <type>x-shift</type>
+            <offset>329</offset>
+          </transformation>
+          <transformation>
+            <type>y-shift</type>
+            <offset>-149</offset>
+          </transformation>
+        </transformations>
+      </layer>
+
+    <layer>
+      <name>MP altitude</name>
+      <type>text</type>
+      <condition>
+        <greater-than>
+          <property>/sim/atc/target-number</property>
+          <value>-1</value>
+        </greater-than>
+      </condition>
+      <font>default</font>
+      <point-size>12</point-size>
+        <color>
+          <red>0.8</red>
+          <green>0.8</green>
+          <blue>0.8</blue>
+        </color>
+        <chunks>
+          <chunk>
+            <type>number-value</type>
+            <property>/sim/atc/target-alt</property>
+            <format>%- 5.0f</format>
+          </chunk>
+        </chunks>
+        <transformations>
+          <transformation>
+            <type>x-shift</type>
+            <offset>199</offset>
+          </transformation>
+          <transformation>
+            <type>y-shift</type>
+            <offset>-201</offset>
+          </transformation>
+        </transformations>
+      </layer>
+
+      <layer>
+        <name>MP range</name>
+        <type>text</type>
+        <condition>
+          <greater-than>
+            <property>/sim/atc/target-number</property>
+            <value>-1</value>
+          </greater-than>
+        </condition>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.8</red>
+        <green>0.8</green>
+        <blue>0.8</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/sim/atc/target-range</property>
+          <format>%- 3.2f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>199</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-246</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>MP airspeed</name>
+      <type>text</type>
+      <condition>
+        <greater-than>
+          <property>/sim/atc/target-number</property>
+          <value>-1</value>
+        </greater-than>
+      </condition>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.8</red>
+        <green>0.8</green>
+        <blue>0.8</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/sim/atc/target-kt</property>
+          <format>%- 3.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>263</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-224</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>MP heading</name>
+      <type>text</type>
+      <condition>
+        <greater-than>
+          <property>/sim/atc/target-number</property>
+          <value>-1</value>
+        </greater-than>
+      </condition>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.8</red>
+        <green>0.8</green>
+        <blue>0.8</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/sim/atc/target-hdg</property>
+          <format>%- 3.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>199</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-224</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>radar range</name>
+      <type>text</type>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.1</red>
+        <green>0.8</green>
+        <blue>0</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/instrumentation/radar/range</property>
+          <format>%- 3.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>199</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-140</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>Altimeter</name>
+      <type>text</type>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.6</red>
+        <green>0.8</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>environment/pressure-sea-level-inhg</property>
+          <format>%- 2.2f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>199</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-277</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>Wind direction</name>
+      <type>text</type>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.6</red>
+        <green>0.8</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>sim/atc/wind-from-display</property>
+          <format>%- 3.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>199</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-299</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>Wind speed</name>
+      <type>text</type>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.6</red>
+        <green>0.8</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>environment/wind-speed-kt</property>
+          <format>%- 2.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>263</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-299</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- ============= v je 12/2009 v =============	-->
+    <layer>
+      <name>activeRW</name>
+      <type>text</type>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.6</red>
+        <green>0.8</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>text-value</type>
+          <property>/sim/atc/activeRW</property>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>169</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-324</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>Airport-id</name>
+      <type>text</type>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.6</red>
+        <green>0.8</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>text-value</type>
+          <property>/sim/tower/airport-id</property>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>169</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-347</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>Airport-alt</name>
+      <type>text</type>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.6</red>
+        <green>0.8</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-APalt</property>
+          <format>%- 0.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>323</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-347</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>FGCOM</name>
+      <type>text</type>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.6</red>
+        <green>0.8</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>instrumentation/comm/frequencies/selected-mhz</property>
+          <format>%- 2.2f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>163</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-376</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>Language</name>
+      <type>text</type>
+      <font>default</font>
+      <point-size>12</point-size>
+      <color>
+        <red>0.6</red>
+        <green>0.8</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>text-value</type>
+          <property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-languages/lsum</property>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>301</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-376</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>RadarRangeE</name>
+      <type>text</type>
+      <font>default</font>
+    	<point-size>14</point-size>
+    	<color><red>1</red><green>1</green><blue>0.3</blue></color>
+    	<chunks><chunk>
+				<type>text-value</type>
+    		<property>/instrumentation/radar/range</property>
+      </chunk></chunks>
+      <transformations>
+        <transformation><type>x-shift</type><offset>30</offset></transformation>
+        <transformation><type>y-shift</type><offset>-91</offset></transformation>
+      </transformations>
+    </layer>
+    <layer>
+      <name>RadarRangeW</name>
+      <type>text</type>
+      <font>default</font>
+    	<point-size>14</point-size>
+    	<color><red>1</red><green>1</green><blue>0.3</blue></color>
+    	<chunks><chunk>
+				<type>text-value</type>
+        <property>/instrumentation/radar/range</property>
+      </chunk></chunks>
+      <transformations>
+        <transformation><type>x-shift</type><offset>-480</offset></transformation>
+        <transformation><type>y-shift</type><offset>-91</offset></transformation>
+      </transformations>
+    </layer>
+    <layer>
+      <name>RadarRangeN</name>
+      <type>text</type>
+      <font>default</font>
+    	<point-size>14</point-size>
+    	<color><red>1</red><green>1</green><blue>0.3</blue></color>
+    	<chunks><chunk>
+				<type>text-value</type>
+    		<property>/instrumentation/radar/range</property>
+      </chunk></chunks>
+      <transformations>
+        <transformation><type>x-shift</type><offset>-225</offset></transformation>
+        <transformation><type>y-shift</type><offset>150</offset></transformation>
+      </transformations>
+    </layer>
+    <layer>
+      <name>RadarRangeS</name>
+      <type>text</type>
+      <font>default</font>
+    	<point-size>14</point-size>
+    	<color><red>1</red><green>1</green><blue>0.3</blue></color>
+    	<chunks><chunk>
+				<type>text-value</type>
+        <property>/instrumentation/radar/range</property>
+      </chunk></chunks>
+      <transformations>
+        <transformation><type>x-shift</type><offset>-225</offset></transformation>
+        <transformation><type>y-shift</type><offset>-330</offset></transformation>
+      </transformations>
+    </layer>
+ ============= ^ je 12/2009 ^ =============
+    <layer>
+      <name>Anzeige Uhrzeit</name>
+      <type>text</type>
+      <font>default</font>
+    	<point-size>10</point-size>
+    	<color><red>1</red><green>1</green><blue>0.3</blue></color>
+    	<chunks><chunk>
+				<type>text-value</type>
+        <property>/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-Time</property>
+      </chunk></chunks>
+      <transformations>
+        <transformation><type>x-shift</type><offset>-500</offset></transformation>
+        <transformation><type>y-shift</type><offset>-370</offset></transformation>
+      </transformations>
+    </layer>
+ ============= ^ je 12/2010 ^ =============
+
+  </layers>
+
+  <actions>
+    <action>
+      <name>previous mp</name>
+      <type>adjust</type>
+      <button>0</button>
+      <x>109</x>
+      <y>-194</y>
+      <w>20</w>
+      <h>20</h>
+      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+      <binding>
+        <command>nasal</command>
+        <script>globals.ATC.step_target(-1);</script>
+      </binding>
+    </action>
+
+    <action>
+      <name>toggle tracking</name>
+      <type>adjust</type>
+      <button>0</button>
+      <x>109</x>
+      <y>-216</y>
+      <w>20</w>
+      <h>20</h>
+      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+      <binding>
+        <command>nasal</command>
+        <script>globals.ATC.toggle_tracking();</script>
+      </binding>
+    </action>
+
+    <action>
+      <name>next mp</name>
+      <type>adjust</type>
+      <button>0</button>
+      <x>109</x>
+      <y>-238</y>
+      <w>20</w>
+      <h>20</h>
+      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+      <binding>
+        <command>nasal</command>
+        <script>globals.ATC.step_target(1);</script>
+      </binding>
+    </action>
+
+    <action>
+      <name>radar down</name>
+      <type>adjust</type>
+      <button>0</button>
+      <x>109</x>
+      <y>-159</y>
+      <w>20</w>
+      <h>20</h>
+      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+      <binding>
+        <command>nasal</command>
+        <script>
+          globals.ATC.step_radar_range(-1);
+          setprop("sim/atc/localizer-offset-display",(getprop("/sim/atc/localizer-offset"))/(getprop("/instrumentation/radar/range")))
+        </script>
+      </binding>
+    </action>
+
+    <action>
+      <name>radar up</name>
+      <type>adjust</type>
+      <button>0</button>
+      <x>109</x>
+      <y>-137</y>
+      <w>20</w>
+      <h>20</h>
+      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+      <binding>
+        <command>nasal</command>
+        <script>
+          globals.ATC.step_radar_range(1);
+          setprop("sim/atc/localizer-offset-display",(getprop("/sim/atc/localizer-offset"))/(getprop("/instrumentation/radar/range")))
+        </script>
+      </binding>
+    </action>
+
+    <action>
+      <name>Toggle Localizer Guideline</name>
+      <type>adjust</type>
+      <button>0</button>
+      <x>336</x>
+      <y>-154</y>
+      <w>20</w>
+      <h>20</h>
+<!--      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>	-->
+      <binding>
+        <command>nasal</command><script>globals.ATC.toggle_localizer();</script></binding>
+				<binding><command>dialog-update</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+    </action>
+
+    <action>
+      <name>Offset Localizer Left</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>true</repeatable>
+      <x>313</x>
+      <y>-154</y>
+      <w>20</w>
+      <h>20</h>
+<!--      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>	-->
+      <binding>
+        <condition>
+          <greater-than>
+            <property>sim/atc/localizer-offset</property>
+            <value>-220</value>
+          </greater-than>
+        </condition>
+        <command>nasal</command>
+        <script>
+          setprop("sim/atc/localizer-offset", getprop("sim/atc/localizer-offset")-1);
+          setprop("sim/atc/localizer-offset-display",(getprop("/sim/atc/localizer-offset"))/(getprop("/instrumentation/radar/range")));
+        </script>
+      	</binding>
+				<binding><command>dialog-update</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+    </action>
+
+<!-- ========== je 12/2009 ========== 	-->
+    <action>
+      <name>Save Localizer Setting</name>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>336</x>
+      <y>-132</y>
+      <w>20</w>
+      <h>20</h>
+      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+      <binding><command>dialog-show</command><dialog-name>ATC-MPinLoc</dialog-name></binding>
+    </action>
+
+    <action>
+      <name>Select Languages</name>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>301</x>
+      <y>-376</y>
+      <w>60</w>
+      <h>20</h>
+<!--      <binding><command>dialog-close</command><dialog-name>ATC-MPlanguage</dialog-name></binding> 	-->
+      <binding><command>dialog-show</command><dialog-name>ATC-MPlanguage</dialog-name></binding>
+    </action>
+<!-- =====^^^^^ je 12/2009 ^^^^^===== 	-->
+
+    <action>
+      <name>Offset Localizer Right</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>true</repeatable>
+      <x>359</x>
+      <y>-154</y>
+      <w>20</w>
+      <h>20</h>
+      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+      <binding>
+        <condition>
+          <less-than>
+            <property>sim/atc/localizer-offset</property>
+            <value>220</value>
+          </less-than>
+        </condition>
+        <command>nasal</command>
+        <script>
+          setprop("sim/atc/localizer-offset", getprop("sim/atc/localizer-offset")+1);
+          setprop("sim/atc/localizer-offset-display",(getprop("/sim/atc/localizer-offset"))/(getprop("/instrumentation/radar/range")));
+        </script>
+      </binding>
+    </action>
+
+    <action>
+      <name>Rotate Localizer Left</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>true</repeatable>
+      <x>313</x>
+      <y>-132</y>
+      <w>20</w>
+      <h>20</h>
+      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+      <binding>
+        <command>nasal</command>
+        <script>globals.ATC.step_localizer_heading(-1);</script>
+      </binding>
+    </action>
+
+    <action>
+      <name>Rotate Localizer Right</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>true</repeatable>
+      <x>359</x>
+      <y>-132</y>
+      <w>20</w>
+      <h>20</h>
+      <binding><command>dialog-close</command><dialog-name>ATC-MPinMsg</dialog-name></binding>
+      <binding>
+        <command>nasal</command>
+        <script>globals.ATC.step_localizer_heading(1);</script>
+      </binding>
+    </action>
+
+    <action>
+      <name>Instruct Left Turn</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>314</x>
+      <y>-185</y>
+      <w>30</w>
+      <h>20</h>
+			<binding><command>nasal</command><script>globals.ATC.def_cmd_target(21-1)</script></binding>
+    </action>
+
+    <action>
+      <name>Instruct Right Turn</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>348</x>
+      <y>-185</y>
+      <w>30</w>
+      <h>20</h>
+			<binding><command>nasal</command><script>globals.ATC.def_cmd_target(22-1)</script></binding>
+    </action>
+
+    <action>
+      <name>Instruct Climb</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>314</x>
+      <y>-209</y>
+      <w>30</w>
+      <h>20</h>
+			<binding><command>nasal</command><script>globals.ATC.def_cmd_target(23-1)</script></binding>
+    </action>
+
+    <action>
+      <name>Instruct Descent</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>314</x>
+      <y>-231</y>
+      <w>30</w>
+      <h>20</h>
+			<binding><command>nasal</command><script>globals.ATC.def_cmd_target(24-1)</script></binding>
+    </action>
+
+    <action>
+      <name>Instruct Reduce Speed</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>348</x>
+      <y>-209</y>
+      <w>30</w>
+      <h>20</h>
+			<binding><command>nasal</command><script>globals.ATC.def_cmd_target(25-1)</script></binding>
+    </action>
+
+    <action>
+      <name>Instruct ILS Approach</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>348</x>
+      <y>-231</y>
+      <w>30</w>
+      <h>20</h>
+			<binding><command>nasal</command><script>globals.ATC.def_cmd_target(27-1)</script></binding>
+    </action>
+
+<!-- ============= v je 12/2009 v ============= 	-->
+    <action>
+      <name>ATIS</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>314</x>
+      <y>-295</y>
+      <w>30</w>
+      <h>20</h>
+			<binding><command>nasal</command><script>globals.ATC.def_cmd_target(9-1)</script></binding>
+    </action>
+
+    <action>
+      <name>Give Clearance for Takeoff</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>314</x>
+      <y>-255</y>
+      <w>30</w>
+      <h>20</h>
+			<binding><command>nasal</command><script>globals.ATC.def_cmd_target(18-1)</script></binding>
+    </action>
+
+    <action>
+      <name>MP-start</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>348</x>
+      <y>-295</y>
+      <w>30</w>
+      <h>20</h>
+      <binding><command>dialog-show</command><dialog-name>ATC-MP</dialog-name></binding>
+			<binding><command>nasal</command><script>globals.ATC.startMP();</script></binding>
+	</action>
+
+    <action>
+      <name>RW-Input</name>
+      <type>adjust</type>
+      <button>0</button>
+      <x>169</x>
+      <y>-329</y>
+      <w>200</w>
+      <h>20</h>
+			<binding><command>nasal</command><script>
+				setprop("/sim/gui/dialogs/ATC-ML/ATC-MPinRW/DELETE","no");
+				setprop("/sim/tower/altitude-agl-ft",sprintf("%.f",getprop("/sim/tower/altitude-ft")-getprop("/sim/gui/dialogs/ATC-ML/ATC-MP/CMD-APalt")));
+
+		globals.ATC.getRadarSettings();
+###       causes problems from here ==> so just load manually after ATC-MPinRW is opend - if needed!!
+			</script></binding>
+      <binding><command>dialog-show</command><dialog-name>ATC-MPinRW</dialog-name></binding>
+      <binding><command>dialog-update</command><dialog-name>ATC-MPinRW</dialog-name></binding>
+					causes problems ==> so just load manually after ATC-MPinRW is opend - if needed!!	-->
+    </action>
+<!-- ============= ^ je 12/2009 ^ ============= -->
+
+    <action>
+      <name>Give Clearance for Landing</name>
+      <type>adjust</type>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <x>348</x>
+      <y>-255</y>
+      <w>30</w>
+      <h>20</h>
+			<binding><command>nasal</command><script>globals.ATC.def_cmd_target(29-1)</script></binding>
+    </action>
+
+  </actions>
+
+</PropertyList>
